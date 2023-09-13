@@ -1,10 +1,9 @@
 ## Working
 
-Defining the database models with django.
+Defining the rest api for patients.
 
 ## TODO list
 
-- Defining the database models.
 - Implement the rest api for patients.
 - Implement the rest api for doctors.
 - Implement the react app for patients.
