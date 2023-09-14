@@ -41,7 +41,7 @@ class Message(models.Model):
     """Models a message which belongs to doctor/patient supervision."""
     supervision = models.ForeignKey(Supervision, related_name='messages', on_delete=models.CASCADE)
     origin = models.ForeignKey(User, related_name='messages', on_delete=models.CASCADE)
-    date = models.DateTimeField()
+    date = models.DateTimeField(auto_now_add=True)
     text = models.CharField(max_length=1048)
     def __str__(self):
         return '{}:{} {}'.format(self.origin.username, self.date,
