@@ -1,0 +1,50 @@
+import { API_URL } from "../constants";
+
+class ConfirmRemovalModal extends Component {
+  state = {
+    modal: false
+  };
+
+  toggle = () => {
+    this.setState(previous => ({
+      modal: !previous.modal
+    }));
+  };
+
+  deleteMeasurement = pk => {
+    axios.delete(API_URL + 'measurement/' + pk).then(() => {
+      this.props.resetState();
+      this.toggle();
+    });
+  };
+
+  render() {
+    return (
+      <Fragment>
+        <Button color="danger" onClick={() => this.toggle()}>
+          Remove
+        </Button>
+        <Modal isOpen={this.state.modal} toggle={this.toggle}>
+          <ModalHeader toggle={this.toggle}>
+            Do you really wanna delete the measurement?
+          </ModalHeader>
+
+          <ModalFooter>
+            <Button type="button" onClick={() => this.toggle()}>
+              Cancel
+            </Button>
+            <Button
+              type="button"
+              color="primary"
+              onClick={() => this.deleteMeasurement(this.props.pk)}
+            >
+              Yes
+            </Button>
+          </ModalFooter>
+        </Modal>
+      </Fragment>
+    );
+  }
+}
+
+export default ConfirmRemovalModal;
