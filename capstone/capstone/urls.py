@@ -23,13 +23,13 @@ from bpress_backend import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
-    path('patient/measurement/', views.PatientMeasurementList.as_view()),
-    path('patient/measurement/<int:pk>/', views.PatientMeasurementDetail.as_view()),
-    path('patient/message/', views.PatientMessageList.as_view()),
-    path('patient/doctor/', views.PatientDoctorList.as_view()),
-    path('doctor/patient/', views.DoctorPatientList.as_view()),
-    path('doctor/measurement/<int:patient_id>/', views.DoctorPatientMeasurementList.as_view()),
-    path('doctor/message/<int:patient_id>/', views.DoctorMessageList.as_view()),
+    path('api/patient/measurement/', views.PatientMeasurementList.as_view()),
+    path('api/patient/measurement/<int:pk>/', views.PatientMeasurementDetail.as_view()),
+    path('api/patient/message/', views.PatientMessageList.as_view()),
+    path('api/patient/doctor/', views.PatientDoctorList.as_view()),
+    path('api/doctor/patient/', views.DoctorPatientList.as_view()),
+    path('api/doctor/measurement/<int:patient_id>/', views.DoctorPatientMeasurementList.as_view()),
+    path('api/doctor/message/<int:patient_id>/', views.DoctorMessageList.as_view()),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
