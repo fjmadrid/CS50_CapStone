@@ -4,8 +4,6 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.parsers import JSONParser
 from rest_framework import permissions
-from rest_framework.authentication import TokenAuthentication
-from rest_framework import generics
 
 from bpress_backend.models import *
 from bpress_backend.serializers import *
@@ -194,20 +192,3 @@ class DoctorMessageList(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class UserDetailAPI(APIView):
-    """Allow login using token authentication.
-    From: https://www.codersarts.com/post/how-to-create-register-and-login-api-using-django-rest-framework-and-token-authentication    
-    """
-    authentication_classes = (TokenAuthentication,)
-    permission_classes = (permissions.AllowAny,)
-    def get(self,request,*args,**kwargs):
-        user = User.objects.get(id=request.user.id)
-        serializer = UserSerializer(user)
-        return Response(serializer.data)
-
-class RegisterUserAPIView(generics.CreateAPIView):
-    """Register a new user
-    From: https://www.codersarts.com/post/how-to-create-register-and-login-api-using-django-rest-framework-and-token-authentication
-    """
-    permission_classes = (permissions.IsAuthenticated)
-    serializer_class = RegisterSerializer
