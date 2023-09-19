@@ -99,4 +99,4 @@ class NewMeasurementForm extends React.Component {
   }
 }
 
-export default NewMeasurementForm;
+export default NewMeasurementForm; 
