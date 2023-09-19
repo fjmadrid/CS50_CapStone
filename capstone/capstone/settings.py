@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
+    'dj_rest_auth',
     'corsheaders',
 ]
 
@@ -129,3 +131,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'bpress_backend.User'
 
 CORS_ORIGIN_ALLOW_ALL = True #!!Only to develop
+
+REST_FRAMEWORK = { #Leer https://coffeebytes.dev/login-con-django-rest-framework-drf/
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication' 
+    ],
+}
