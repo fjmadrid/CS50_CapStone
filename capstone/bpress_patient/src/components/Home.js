@@ -17,7 +17,7 @@ class Home extends Component {
   }
 
   getMeasurements = () => {
-    axios.get(API_URL + 'measurement/').then(res => this.setState({ measurements: res.data }));
+    axios.get(API_URL + 'patient/measurement/').then(res => this.setState({ measurements: res.data }));
   };
 
   resetState = () => {

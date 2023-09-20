@@ -3,31 +3,35 @@ import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
 import axios from "axios";
 
 import { API_URL } from "../constants";
-import {LoginForm} from "./components/LoginForm";
+import LoginForm from "./LoginForm";
 
 
 class LoginLogoutModal extends Component {
-  state = {
-    modal: false
-  };
+
+  constructor(props) {
+    super(props);
+    this.state = {modal: false};
+  }
 
   toggle = () => {
     this.setState(previous => ({
       modal: !previous.modal
     }));
   };
-  
+
+  logout = e => {    
+    e.preventDefault();
+    axios.post(API_URL+'authentication/logout/').then((response) => {
+        axios.defaults.headers.common['Authorization'] = '';
+        this.props.setState ({username:"", token:""});        
+    });    
+  }
+
   render() {
-    logout = e => {
-        e.preventDefault();
-        axios.post(API_URL+'authenticate/logout').then(() => {
-            axios.defaults.headers.common['Authorization'] = '';
-            this.props.setState ({user:"", token:""});
-        });
-    }
 
     var button = <Button onClick={this.logout}>Logout</Button>;
-    if (this.props.state.token === '') {
+
+    if (this.props.state.username === '') {
       button = (
         <Button
           color="primary"
@@ -39,7 +43,7 @@ class LoginLogoutModal extends Component {
         </Button>
       );
     }
-
+    
     return (
       <Fragment>
         {button}
@@ -47,7 +51,8 @@ class LoginLogoutModal extends Component {
           <ModalHeader toggle={this.toggle}>Login</ModalHeader>
           <ModalBody>
             <LoginForm
-              setState={this.props.setState}
+              state={this.props.state}
+              setState={(s)=>{this.props.setState(s)}}
               toggle={this.toggle}
             />
           </ModalBody>

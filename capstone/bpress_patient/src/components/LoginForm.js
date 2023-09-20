@@ -6,11 +6,14 @@ import axios from "axios";
 import { API_URL } from "../constants";
 
 class LoginForm extends React.Component {
-        
-  state = {
-    username: "",
-    password: "",
-  };
+
+  constructor(props) {
+    super (props);
+    this.state = {
+      username: "",
+      password: "",
+    };    
+  }
 
 //  componentDidMount() {
 //  }
@@ -19,11 +22,12 @@ class LoginForm extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  login = e => {
+  login = e => {    
     e.preventDefault();
-    axios.post(API_URL+'authentication/login', this.state).then(response => {
-        axios.defaults.headers.common['Authorization'] = response['token'];
-        this.props.setState({username:this.state.username, token:response['token']});
+    axios.post(API_URL+'authentication/login/', this.state).then((response) => {
+        const key = response.data['key'];        
+        axios.defaults.headers.common['Authorization'] = `Token ${key}`;                        
+        this.props.setState({username:this.state.username, token:key});
         this.props.toggle();
     });
   };
