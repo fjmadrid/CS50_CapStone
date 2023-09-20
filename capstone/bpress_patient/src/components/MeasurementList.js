@@ -28,7 +28,7 @@ class MeasurementList extends Component {
             </tr>
           ) : (
             measurements.map(measurement => (
-              <tr key={measurement.pk}>
+              <tr key={measurement.id}>
                 <td>{measurement.date}</td>
                 <td>{measurement.systolic}</td>
                 <td>{measurement.diastolic}</td>
@@ -38,12 +38,12 @@ class MeasurementList extends Component {
                   <NewMeasurementModal
                     create={false}
                     measurement={measurement}
-                    resetState={this.props.resetState}
+                    resetState={()=>{this.props.resetState()}}
                   />
                   &nbsp;&nbsp;
                   <ConfirmRemovalModal
-                    pk={measurement.pk}
-                    resetState={this.props.resetState}
+                    id={measurement.id}
+                    resetState={()=>{this.props.resetState()}}
                   />
                 </td>
               </tr>

@@ -29,17 +29,17 @@ class Home extends Component {
       <Container style={{ marginTop: "20px" }}>
         <Row>
           <Col>
+            <NewMeasurementModal create={true} resetState={this.resetState} />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
             <MeasurementList
               measurements={this.state.measurements}
               resetState={this.resetState}
             />
           </Col>
-        </Row>
-        <Row>
-          <Col>
-            <NewMeasurementModal create={true} resetState={this.resetState} />
-          </Col>
-        </Row>
+        </Row>        
       </Container>
     );
   }

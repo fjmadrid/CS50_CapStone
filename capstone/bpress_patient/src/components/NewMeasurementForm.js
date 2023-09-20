@@ -10,7 +10,7 @@ class NewMeasurementForm extends React.Component {
     now = new Date();
 
   state = {
-    pk: 0,
+    id: 0,
     diastolic: 0,
     systolic: 0,
     ppm: 0,
@@ -20,8 +20,8 @@ class NewMeasurementForm extends React.Component {
 
   componentDidMount() {
     if (this.props.measurement) {
-      const { pk, diastolic, systolic, ppm, date, observation } = this.props.measurement;
-      this.setState({ pk, diastolic, systolic, ppm, date, observation });
+      const { id, diastolic, systolic, ppm, date, observation } = this.props.measurement;
+      this.setState({ id, diastolic, systolic, ppm, date, observation });
     }
   }
 
@@ -31,7 +31,7 @@ class NewMeasurementForm extends React.Component {
 
   createMeasurement = e => {
     e.preventDefault();
-    axios.post(API_URL+'measurement/', this.state).then(() => {
+    axios.post(API_URL+'patient/measurement/', this.state).then(() => {
       this.props.resetState();
       this.props.toggle();
     });
@@ -39,7 +39,7 @@ class NewMeasurementForm extends React.Component {
 
   editMeasurement = e => {
     e.preventDefault();
-    axios.put(API_URL+'measurement/'+ this.state.pk+'/', this.state).then(() => {
+    axios.put(API_URL+'patient/measurement/'+ this.state.id + '/', this.state).then(() => {
       this.props.resetState();
       this.props.toggle();
     });
@@ -85,7 +85,7 @@ class NewMeasurementForm extends React.Component {
           />
         </FormGroup>
         <FormGroup>
-          <Label for="observation">Date:</Label>
+          <Label for="observation">Observation:</Label>
           <Input
             type="text"
             name="observation"

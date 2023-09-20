@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-
+import { Container, Row } from "reactstrap";
 
 import Header from "./components/Header";
 import Home from "./components/Home";
@@ -13,15 +13,15 @@ class App extends Component {
   }
 
   render() {
-    console.log("Rendering app")
-    console.log("App.state: ", this.state)
     if (this.state.username === "") {
       return (
         <Fragment>          
           <Header state={this.state} setState={(s)=>{this.setState(s)}} />          
-          <div className="text-center">
-            <h1>Opps! you must login!!</h1>
-          </div>            
+          <Container className="text-center">
+            <Row>
+              <h1>Opps! you must login!!</h1>
+            </Row>
+          </Container>            
         </Fragment>
       );
     } else {

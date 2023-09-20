@@ -15,8 +15,8 @@ class ConfirmRemovalModal extends Component {
     }));
   };
 
-  deleteMeasurement = pk => {
-    axios.delete(API_URL + 'measurement/' + pk).then(() => {
+  deleteMeasurement = id => {
+    axios.delete(API_URL + 'patient/measurement/' + id).then(() => {
       this.props.resetState();
       this.toggle();
     });
@@ -40,7 +40,7 @@ class ConfirmRemovalModal extends Component {
             <Button
               type="button"
               color="primary"
-              onClick={() => this.deleteMeasurement(this.props.pk)}
+              onClick={() => this.deleteMeasurement(this.props.id)}
             >
               Yes
             </Button>
