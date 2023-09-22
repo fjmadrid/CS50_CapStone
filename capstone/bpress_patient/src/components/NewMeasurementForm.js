@@ -6,23 +6,25 @@ import axios from "axios";
 import { API_URL } from "../constants";
 
 class NewMeasurementForm extends React.Component {
-    
-    now = new Date();
-
-  state = {
-    id: 0,
-    diastolic: 0,
-    systolic: 0,
-    ppm: 0,
-    date: this.now.toISOString(),
-    observation: "",
-  };
-
-  componentDidMount() {
+  
+  constructor(props) {
+    super(props);
+    var now = new Date();
+    console.log('NewMeasurementForm.constructor this.props.measurement: ',this.props.measurement);
     if (this.props.measurement) {
-      const { id, diastolic, systolic, ppm, date, observation } = this.props.measurement;
-      this.setState({ id, diastolic, systolic, ppm, date, observation });
+      this.state = this.props.measurement;
     }
+    else {
+      this.state = {
+        id: 0,
+        diastolic: 0,
+        systolic: 0,
+        ppm: 0,
+        date: now.toISOString(),
+        observation: "",
+      };
+    }
+    console.log('NewMeasurementForm.constructor this.state: ',this.state);
   }
 
   onChange = e => {

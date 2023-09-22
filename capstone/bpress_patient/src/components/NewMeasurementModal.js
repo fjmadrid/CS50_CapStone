@@ -3,9 +3,12 @@ import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
 import NewMeasurementForm from "./NewMeasurementForm";
 
 class NewMeasurementModal extends Component {
-  state = {
-    modal: false
-  };
+  
+  constructor(props) {
+    super(props)
+    this.state = {modal: false};
+    console.log('NewMeasurementModal.constructor this.props.measurement:', this.props.measurement)
+  }
 
   toggle = () => {
     this.setState(previous => ({
