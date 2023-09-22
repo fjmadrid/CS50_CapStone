@@ -28,18 +28,31 @@ class Home extends Component {
     return (
       <Container style={{ marginTop: "20px" }}>
         <Row>
-          <Col>
-            <NewMeasurementModal create={true} resetState={this.resetState} />
+          <Col className="col-7">
+            <Container style={{ marginTop: "20px" }}>
+              <Row>
+                <Col>
+                  <NewMeasurementModal create={true} resetState={this.resetState} />
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <MeasurementList
+                    measurements={this.state.measurements}
+                    resetState={this.resetState}
+                  />
+                </Col>
+              </Row>        
+            </Container>
           </Col>
+          <Col>
+            <Container>
+              <Row>
+                <h1>Chat</h1>
+              </Row>
+            </Container>
+          </Col> 
         </Row>
-        <Row>
-          <Col>
-            <MeasurementList
-              measurements={this.state.measurements}
-              resetState={this.resetState}
-            />
-          </Col>
-        </Row>        
       </Container>
     );
   }
