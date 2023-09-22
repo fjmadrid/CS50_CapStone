@@ -38,12 +38,12 @@ class MeasurementList extends Component {
                   <NewMeasurementModal
                     create={false}
                     measurement={measurement}
-                    resetState={()=>{this.props.resetState()}}
+                    resetState={this.props.resetState}
                   />
                   &nbsp;&nbsp;
                   <ConfirmRemovalModal
                     id={measurement.id}
-                    resetState={()=>{this.props.resetState()}}
+                    resetState={this.props.resetState}
                   />
                 </td>
               </tr>
