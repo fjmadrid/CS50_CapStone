@@ -1,9 +1,11 @@
 from django.http import Http404
+
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.parsers import JSONParser
 from rest_framework import permissions
+from rest_framework.pagination import PageNumberPagination
 
 from bpress_backend.models import *
 from bpress_backend.serializers import *
@@ -36,7 +38,7 @@ def get_supervision(patient):
     except Measurement.DoesNotExist:
         raise Http404                
 
-class PatientMeasurementList(APIView):
+class PatientMeasurementList(APIView, PageNumberPagination):
     """
     List all measurements of the current patient, or create a new one.
     """
@@ -44,9 +46,11 @@ class PatientMeasurementList(APIView):
     parser_classes = (JSONParser, )
     
     def get(self, request, format=None):        
-        queryset = Measurement.objects.all().filter(user=request.user).order_by('-date')        
-        serializer = MeasurementSerializer(queryset, many=True)
-        return Response(serializer.data)
+        queryset = Measurement.objects.all().filter(user=request.user).order_by('-date')
+        results = self.paginate_queryset(queryset, request, view=self)
+        serializer = MeasurementSerializer(results, many=True)
+        return self.get_paginated_response(serializer.data)
+    
     def post(self, request, format=None):       
         serializer = MeasurementSerializer(data=request.data)        
         if serializer.is_valid():            

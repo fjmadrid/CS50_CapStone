@@ -1,6 +1,7 @@
 ## Working
 
 - Added pagination to list of measurements for patient app.
+    revisando doc react-table en: https://github.com/TanStack/table/tree/v6#props
 
 ## TODO list
 

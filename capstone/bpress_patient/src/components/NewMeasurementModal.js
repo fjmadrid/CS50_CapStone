@@ -6,8 +6,7 @@ class NewMeasurementModal extends Component {
   
   constructor(props) {
     super(props)
-    this.state = {modal: false};
-    console.log('NewMeasurementModal.constructor this.props.measurement:', this.props.measurement)
+    this.state = {modal: false};    
   }
 
   toggle = () => {
