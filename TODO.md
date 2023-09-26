@@ -1,6 +1,6 @@
 ## Working
 
-hacer mejor el compoenente MEasuremtList.
+Implementing the chat component.
 
 ## TODO list
 
@@ -10,3 +10,4 @@ hacer mejor el compoenente MEasuremtList.
     - Implementing a chat component.
 - Implement the react app for doctors.
 - ¿Por qué los campos date del formulario no se inicializan bien con la fecha cargada?
+- Añadir el username logeado en la cabecera.
