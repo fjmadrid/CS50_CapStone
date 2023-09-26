@@ -9,12 +9,11 @@ class NewMeasurementForm extends React.Component {
   
   constructor(props) {
     super(props);
-    var now = new Date();
-    console.log('NewMeasurementForm.constructor this.props.measurement: ',this.props.measurement);
     if (this.props.measurement) {
       this.state = this.props.measurement;
     }
     else {
+      var now = new Date();
       this.state = {
         id: 0,
         diastolic: 0,
@@ -24,7 +23,6 @@ class NewMeasurementForm extends React.Component {
         observation: "",
       };
     }
-    console.log('NewMeasurementForm.constructor this.state: ',this.state);
   }
 
   onChange = e => {
@@ -42,7 +40,7 @@ class NewMeasurementForm extends React.Component {
   editMeasurement = e => {
     e.preventDefault();
     axios.put(API_URL+'patient/measurement/'+ this.state.id + '/', this.state).then(() => {
-      this.props.resetState();
+      this.props.resetState();      
       this.props.toggle();
     });
   };

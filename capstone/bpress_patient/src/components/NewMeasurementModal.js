@@ -30,7 +30,7 @@ class NewMeasurementModal extends Component {
           onClick={this.toggle}
           style={{ minWidth: "200px" }}
         >
-          Create New
+          New
         </Button>
       );
     }
