@@ -47,6 +47,9 @@ class MeasurementList extends Component {
     return (
       <Container style={{ marginTop: "20px" }}>
         <Row>
+          <Col><h1 style={{textAlign: "center"}}>Measurements</h1></Col>
+        </Row>
+        <Row>
           <Col>
           <NewMeasurementModal create={true} resetState={this.resetState} />
           </Col>
