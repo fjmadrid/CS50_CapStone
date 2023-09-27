@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('api/authentication/', include('dj_rest_auth.urls')),#Leer https://coffeebytes.dev/login-con-django-rest-framework-drf/
+    path('api/patient/', views.PatientProfileDetail.as_view()),
     path('api/patient/measurement/', views.PatientMeasurementList.as_view()),
     path('api/patient/measurement/<int:pk>/', views.PatientMeasurementDetail.as_view()),
     path('api/patient/message/', views.PatientMessageList.as_view()),

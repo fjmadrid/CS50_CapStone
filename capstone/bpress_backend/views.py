@@ -38,6 +38,20 @@ def get_supervision(patient):
     except Measurement.DoesNotExist:
         raise Http404                
 
+class PatientProfileDetail(APIView):
+    """Retrieve current patient profile."""
+    parser_classes = (JSONParser, )
+    permission_classes = [permissions.IsAuthenticated]
+    def get_object(self, user):
+        try:
+            return UserProfile.objects.get(user=user)
+        except UserProfile.DoesNotExist:
+            raise Http404
+
+    def get(self, request, format=None):
+        profile = self.get_object(request.user)
+        serializer = UserProfileSerializer(profile)
+        return Response(serializer.data)
 class PatientMeasurementList(APIView, PageNumberPagination):
     """
     List all measurements of the current patient, or create a new one.
