@@ -8,12 +8,15 @@ class App extends Component {
   
   constructor(props) {
     super(props)
-    this.state = { username:"", token:"" };
+    this.state = {
+      patient: {id:0, username:""},
+      doctor: {id:0, username:""}
+    };
     axios.defaults.headers.common['Authorization'] = "";
   }
 
   render() {
-    if (this.state.username === "") {
+    if (this.state.patient.username === "") {
       return (
         <Fragment>          
           <Header state={this.state} setState={(s)=>{this.setState(s)}} />          
@@ -25,10 +28,13 @@ class App extends Component {
         </Fragment>
       );
     } else {
-      return (
+      return (        
         <Fragment>
         <Header state={this.state} setState={(s)=>{this.setState(s)}} />      
-        <Home />
+        <Home 
+          patient={this.state.patient}
+          doctor={this.state.doctor}
+        />
         </Fragment>
       );
     }          

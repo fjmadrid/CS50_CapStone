@@ -23,15 +23,18 @@ class LoginLogoutModal extends Component {
     e.preventDefault();
     axios.post(API_URL+'authentication/logout/').then((response) => {
         axios.defaults.headers.common['Authorization'] = '';
-        this.props.setState ({username:"", token:""});        
-    });    
+        this.props.setState ({
+          patient:{id:0, username:""},
+          doctor:{id:0, username:""}
+      });
+    });
   }
 
   render() {
 
     var button = <Button onClick={this.logout}>Logout</Button>;
 
-    if (this.props.state.username === '') {
+    if (this.props.state.patient.username === "") {
       button = (
         <Button
           color="primary"
@@ -43,6 +46,7 @@ class LoginLogoutModal extends Component {
         </Button>
       );
     }
+
     
     return (
       <Fragment>
