@@ -107,7 +107,7 @@ class PatientMeasurementDetail(APIView):
         measurement.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
     
-class PatientMessageList(APIView):
+class PatientMessageList(APIView, PageNumberPagination):
     """
     List all supervision messages of the current patient, or create a new one.
     """
@@ -119,12 +119,13 @@ class PatientMessageList(APIView):
             return Response(status=status.HTTP_400_BAD_REQUEST)
         supv = get_supervision(patient=request.user)
         queryset = Message.objects.all().filter(supervision=supv).order_by('-date')
-        serializer = MessageSerializer(queryset, many=True)
-        return Response(serializer.data)
+        results = self.paginate_queryset(queryset, request, view=self)
+        serializer = MessageSerializer(results, many=True)
+        return self.get_paginated_response(serializer.data)
     def post(self, request, format=None):
         if not is_patient(request.user):
             return Response(status=status.HTTP_400_BAD_REQUEST)
-        supv = self.get_supervision(request.user)
+        supv = get_supervision(request.user)
         serializer = MessageSerializer(data=request.data)     
         if serializer.is_valid():
             serializer.save(supervision=supv, origin=request.user)
