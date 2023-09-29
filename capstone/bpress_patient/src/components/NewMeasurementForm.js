@@ -25,7 +25,7 @@ class NewMeasurementForm extends React.Component {
     }
   }
 
-  onChange = e => {
+  onChange = e => {    
     this.setState({ [e.target.name]: e.target.value });
   };
 

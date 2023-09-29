@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Col, Container, Row } from "reactstrap";
 import MeasurementList from "./MeasurementList";
-
+import MessageList from "./MessageList";
 class Home extends Component {
 
   render() {
@@ -9,14 +9,17 @@ class Home extends Component {
       <Container style={{ marginTop: "20px" }}>
         <Row>
           <Col className="col-7">
-            <MeasurementList/>
+            <Row>
+              <MeasurementList/>
+            </Row>
           </Col>
           <Col>
-            <Container>
-              <Row>
-                <h1>Chat</h1>
-              </Row>
-            </Container>
+            <Row>
+              <MessageList
+                patient={this.props.patient}
+                doctor={this.props.doctor}
+              />
+            </Row>
           </Col> 
         </Row>
       </Container>
