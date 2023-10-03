@@ -50,64 +50,41 @@ class MessageList extends Component {
           <Col><h1 style={{textAlign: "center"}}>Messages</h1></Col>
         </Row>
         <Row>
-          <Col>
-          <NewMessageModal resetState={this.resetState} />
-          </Col>
+          <Col>Doctor {this.props.doctor.username}</Col><Col style={{textAlign:"right"}}>Me</Col>
         </Row>
-        <Row>
-          <Table>
-            <thead>
-              <tr>
-                <th>
-                  <Container><Row>
-                  <Col>Doctor {this.props.doctor.username}</Col><Col style={{textAlign:"right"}}>Me</Col>
-                  </Row></Container>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
+        <Row style={{height:"75%", backgroundColor:"darkblue"}}>            
+            <Container style={{overflowY:"scroll", maxHeight:"500px"}}>
               {!messages || messages.length <= 0 ? (
-                <tr>
-                  <td align="center">
+                <div style={{textAlign: "center"}}>
                     <b>Ops, no one here yet</b>
-                  </td>
-                </tr>
+                </div>
               ) : (
-                messages.map(message => {
+                messages.toReversed().map(message => {
                   if (message.origin === this.props.patient.id) {
                     return (
-                    <tr key={message.id}>
-                      <td>
-                        <Card style={{width:"75%", float:"right"}}>
+                        <Card className="w-75" style={{float:"right", backgroundColor:"lightgreen"}}>
                           <CardBody>
-                            <CardText>{message.text}</CardText>                            
+                            <CardText style={{fontSize:"75%"}}>{message.text}</CardText>                            
                           </CardBody>
-                          <CardFooter>{message.date}</CardFooter>
+                          <CardFooter style={{fontSize:"50%", textAlign:"left"}}>{message.date}</CardFooter>
                         </Card>
-                      </td>
-                    </tr>
                     );
                   }
                   else {
-                    return (
-                      <tr key={message.id}>
-                        <td>
-                          <Card style={{width:"75%", float:"left"}}>
+                    return (                     
+                          <Card className="w-75" style={{float:"left", backgroundColor:"grey"}}>
                             <CardBody>
-                              <CardText>{message.text}</CardText>                            
+                              <CardText style={{fontSize:"75%"}}>{message.text}</CardText>                            
                             </CardBody>
-                            <CardFooter>{message.date}</CardFooter>
+                            <CardFooter style={{fontSize:"50%", textAlign:"left"}} >{message.date}</CardFooter>
                           </Card>
-                        </td>
-                      </tr>
                     );
                   }
                 })
               )}
-            </tbody>
-          </Table>
+            </Container>
         </Row>
-        <Row>      
+        <Row>
             <PaginationControl
               page={this.state.page}
               between={4}
@@ -116,6 +93,11 @@ class MessageList extends Component {
               changePage={(p)=>this.getMessages(p)}
               ellipsis={1}
             />
+        </Row>
+        <Row>
+          <Col>
+          <NewMessageModal resetState={this.resetState} />
+          </Col>
         </Row>
       </Container>
     );
