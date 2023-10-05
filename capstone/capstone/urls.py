@@ -29,6 +29,7 @@ urlpatterns = [
     path('api/patient/measurement/<int:pk>/', views.PatientMeasurementDetail.as_view()),
     path('api/patient/message/', views.PatientMessageList.as_view()),
     path('api/patient/doctor/', views.PatientDoctorList.as_view()),
+    path('api/doctor/', views.DoctorProfileDetail.as_view()),
     path('api/doctor/patient/', views.DoctorPatientList.as_view()),
     path('api/doctor/measurement/<int:patient_id>/', views.DoctorPatientMeasurementList.as_view()),
     path('api/doctor/message/<int:patient_id>/', views.DoctorMessageList.as_view())    

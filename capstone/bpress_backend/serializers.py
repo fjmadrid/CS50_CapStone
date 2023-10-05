@@ -2,7 +2,7 @@ from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from django.contrib.auth.password_validation import validate_password
 
-from bpress_backend.models import User, UserProfile, Measurement, Message
+from bpress_backend.models import User, UserProfile, DoctorProfile, Measurement, Message
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -17,6 +17,11 @@ class UserProfileSerializer(serializers.ModelSerializer):
         model = UserProfile
         fields = ['id', 'user', 'birthdate', 'weight', 'height', ]
 
+class DoctorProfileSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True);
+    class Meta:
+        model = DoctorProfile
+        fields = ['id', 'user', 'license']
 
 class RegisterSerializer(serializers.ModelSerializer):
     """ Serialize Registration data.

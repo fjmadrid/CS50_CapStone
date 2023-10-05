@@ -14,18 +14,17 @@ class Supervision(models.Model):
     def __str__(self):
         return f'{self.doctor.username} supervising {self.patient.username}'
 class UserProfile (models.Model):
-    """Profile class to extend User model.    
-        Then  if u is an instance of User model, we can get profile data with
-        u.profile.xxx
-    Args:
-        models (_type_): _description_
-    """
+    """Profile class to extend User model for patients."""
     user = models.OneToOneField(User, on_delete=models.CASCADE,
                                 related_name='profile')
     birthdate = models.DateField('Birthdate')
     weight = models.FloatField('Weight')
     height = models.FloatField('Height')            
-
+class DoctorProfile (models.Model):
+    """Profile class to extend User model for doctors."""
+    user = models.OneToOneField(User, on_delete=models.CASCADE,
+                                related_name='doctor_profile')
+    license = models.CharField(max_length=30);
 class Measurement(models.Model):
     """Models a measurement of the blood pressure taken by a patient."""
     user = models.ForeignKey(User, on_delete=models.CASCADE,

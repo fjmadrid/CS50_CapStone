@@ -7,10 +7,13 @@ from .models import *
 class UserProfileInline(admin.StackedInline):
     model = UserProfile
     can_delete = False
+class DoctorProfileInline(admin.StackedInline):
+    model = DoctorProfile
+    can_delete = False
 
 # Define a new User admin
 class UserAdmin(BaseUserAdmin):
-    inlines = (UserProfileInline,)
+    inlines = (UserProfileInline, DoctorProfileInline)
 
 admin.site.register(User, UserAdmin)
 admin.site.register(Supervision)

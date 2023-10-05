@@ -146,6 +146,20 @@ class PatientDoctorList(APIView):
         serializer = UserSerializer(supv.doctor)
         return Response(serializer.data)
 
+class DoctorProfileDetail(APIView):
+    """Retrieve current doctor profile."""
+    parser_classes = (JSONParser, )
+    permission_classes = [permissions.IsAuthenticated]
+    def get_object(self, user):
+        try:
+            return DoctorProfile.objects.get(user=user)
+        except UserProfile.DoesNotExist:
+            raise Http404
+
+    def get(self, request, format=None):
+        profile = self.get_object(request.user)
+        serializer = DoctorProfileSerializer(profile)
+        return Response(serializer.data)
 class DoctorPatientList(APIView):
     """
     List all patients supervised by the current doctor.
