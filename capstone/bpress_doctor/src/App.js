@@ -42,10 +42,10 @@ class App extends Component {
         return (
           <Fragment>
           <Header state={this.state} setState={(s)=>{this.setState(s)}} />      
-{/*           <Home  */}
-/*             patient={this.state.patient} */
-/*             doctor={this.state.doctor} */
-/*           /> */
+{/*           <Home  
+             patient={this.state.patient} 
+             doctor={this.state.doctor} 
+           /> */}
           </Fragment>
       )};
     }          
