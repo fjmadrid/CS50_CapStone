@@ -173,7 +173,7 @@ class DoctorPatientList(APIView):
         serializer = UserSerializer(queryset, many=True)
         return Response(serializer.data)
 
-class DoctorPatientMeasurementList(APIView):
+class DoctorPatientMeasurementList(APIView, PageNumberPagination):
     """
     List measurements of a patient supervised by the current doctor.
     """
@@ -188,11 +188,13 @@ class DoctorPatientMeasurementList(APIView):
         supv = get_supervision(patient)
         if supv.doctor != request.user:
             return Response(status=status.HTTP_400_BAD_REQUEST)
+        
         queryset = Measurement.objects.filter(user=patient)
-        serializer = MeasurementSerializer(queryset, many=True)
-        return Response(serializer.data)
+        results = self.paginate_queryset(queryset, request, view=self)
+        serializer = MeasurementSerializer(results, many=True)
+        return self.get_paginated_response(serializer.data)
 
-class DoctorMessageList(APIView):
+class DoctorMessageList(APIView,  PageNumberPagination):
     """
     List all messages of a patient supervised by the current doctor.
     """
@@ -207,9 +209,10 @@ class DoctorMessageList(APIView):
         supv = get_supervision(patient)
         if supv.doctor != request.user:
             return Response(status=status.HTTP_400_BAD_REQUEST)
-        queryset = Message.objects.filter(supervision=supv)
-        serializer = MessageSerializer(queryset, many=True)
-        return Response(serializer.data)
+        queryset = Message.objects.filter(supervision=supv).order_by('-date')
+        results = self.paginate_queryset(queryset, request, view=self)
+        serializer = MessageSerializer(results, many=True)
+        return self.get_paginated_response(serializer.data)
     def post(self, request, patient_id, format=None):
         if not is_doctor(request.user):
             return Response(status=status.HTTP_400_BAD_REQUEST)
