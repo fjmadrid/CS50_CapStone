@@ -1,7 +1,7 @@
 ## Working
 
 Implementing doctor_app:
-    - Implementar Home una vez que un paciente ha sido seleccionado. 
+    - Arreglar error que cuando cambio de paciente con el drowpdown no se actualiza home.
 
 ## TODO list
 
