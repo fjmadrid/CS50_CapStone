@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { Container, Row } from "reactstrap";
 
 import Header from "./components/Header";
-// import Home from "./components/Home";
+import Home from "./components/Home";
 import axios from "axios";
 
 class App extends Component {
@@ -42,10 +42,10 @@ class App extends Component {
         return (
           <Fragment>
           <Header state={this.state} setState={(s)=>{this.setState(s)}} />      
-{/*           <Home  
+          <Home  
              patient={this.state.patient} 
              doctor={this.state.doctor} 
-           /> */}
+          />
           </Fragment>
       )};
     }          

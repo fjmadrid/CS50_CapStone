@@ -10,7 +10,7 @@ class Home extends Component {
         <Row>
           <Col className="col-7">
             <Row>
-              <MeasurementList/>
+              <MeasurementList patient={this.props.patient}/>
             </Row>
           </Col>
           <Col>

@@ -15,7 +15,6 @@ class CreateSelectPatient extends Component {
     }
 
     toggle = () => {
-        console.log("dropdownOpen: ", this.state.dropdownOpen);
         this.setState(previous => ({
             dropdownOpen: !previous.dropdownOpen
           }));
@@ -24,7 +23,8 @@ class CreateSelectPatient extends Component {
     createPatient = () => {}
     
     selectPatient = (patient) => {
-        this.props.setState({patient:patient});        
+        console.log("Setting patient.");
+        this.props.setState({patient:patient});     
     }
 
     render() {
