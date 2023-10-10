@@ -1,12 +1,13 @@
 ## Working
 
 Implementing doctor_app:
-    - Arreglar error que cuando cambio de paciente con el drowpdown no se actualiza home.
+    - El modal que crea un paciente no se cierra de forma automática.
 
 ## TODO list
 
-- hacer que la ruta api/doctor/patient pueda crear un paciente.     
 - Implement the react app for doctors.
-    - Implementar la parte de crear paciente en el componente CreateSelectPatient.
     - Cambiar el nombre del dropdown con el nombre del paciente seleccionado.
+    - Mejorar el aspecto de header de forma que tenga dos lineas, una con el título
+    - de la app y otra con los botones: login/logout y Select/Create patients.
 - ¿Por qué los campos date del formulario no se inicializan bien con la fecha cargada?
+- Mejorar el aspecto del chat.
