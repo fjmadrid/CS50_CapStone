@@ -1,4 +1,5 @@
 from django.http import Http404
+from django.contrib.auth.models import Group
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -162,7 +163,7 @@ class DoctorProfileDetail(APIView):
         return Response(serializer.data)
 class DoctorPatientList(APIView):
     """
-    List all patients supervised by the current doctor.
+    List/create patients supervised by the current doctor.
     """
     permission_classes = [permissions.IsAuthenticated]
     parser_classes = (JSONParser, )
@@ -172,6 +173,26 @@ class DoctorPatientList(APIView):
         queryset = User.objects.filter(supervised_by__doctor=request.user)
         serializer = UserSerializer(queryset, many=True)
         return Response(serializer.data)
+    def post(self, request, format=None):        
+        if not is_doctor(request.user):
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        patient_ser = UserSerializer(data=request.data)        
+        patient = None
+        if patient_ser.is_valid():            
+            patient = patient_ser.save()            
+        else:
+            return Response(patient.errors, status=status.HTTP_400_BAD_REQUEST)                
+        patient_profile = UserProfileSerializer(data=request.data)        
+        if patient_profile.is_valid():
+            patient_profile.save(user=patient)
+        else:
+            return Response(patient_profile.errors, status=status.HTTP_400_BAD_REQUEST)                
+        patients_group = Group.objects.get(name='patients')
+        patients_group.user_set.add(patient)        
+        patient.set_password(request.data['password'])        
+        supv = Supervision(patient=patient, doctor=request.user)        
+        supv.save()        
+        return Response(patient_ser.data, status=status.HTTP_201_CREATED)
 
 class DoctorPatientMeasurementList(APIView, PageNumberPagination):
     """
