@@ -22,6 +22,12 @@ class MessageList extends Component {
     this.getMessages(1);
   }
 
+  componentDidUpdate(prevProps, prevState)
+  {
+    if (prevProps.patient.id !== this.props.patient.id)
+      this.getMessages(1);
+  }
+
   range(size, startAt = 0) {
     return [...Array(size).keys()].map(i => i + startAt);
   }

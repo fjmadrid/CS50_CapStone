@@ -23,8 +23,7 @@ class CreateSelectPatient extends Component {
     createPatient = () => {}
     
     selectPatient = (patient) => {
-        console.log("Setting patient.");
-        this.props.setState({patient:patient});     
+        this.props.setState({patient:patient});        
     }
 
     render() {

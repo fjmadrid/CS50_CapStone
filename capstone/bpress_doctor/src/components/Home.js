@@ -3,7 +3,7 @@ import { Col, Container, Row } from "reactstrap";
 import MeasurementList from "./MeasurementList";
 import MessageList from "./MessageList";
 class Home extends Component {
-
+  
   render() {
     return (
       <Container style={{ marginTop: "20px" }}>

@@ -16,8 +16,13 @@ class MeasurementList extends Component {
     };
   }
   
-  componentDidMount() {
+  componentDidMount() {    
     this.getMeasurements(1);
+  }
+
+  componentDidUpdate(prevProps, prevState) {    
+    if (this.props.patient.id !== prevProps.patient.id)
+      this.getMeasurements(1);
   }
 
   range(size, startAt = 0) {
@@ -31,7 +36,6 @@ class MeasurementList extends Component {
   getMeasurements = (page=1) => {    
     axios.get(API_URL + `doctor/measurement/${this.props.patient.id}/?page=${page}`).then(
       res => {
-        console.log("Setting measurements to ", res.data.results);
         this.setState({
           measurements: res.data.results,
           count:res.data.count,
@@ -44,8 +48,7 @@ class MeasurementList extends Component {
     this.getMeasurements(this.state.page);
   };
 
-  render() {
-    console.log("Getting measurements as ", this.state.measurements);
+  render() {    
     const measurements = this.state.measurements;    
     return (
       <Container style={{ marginTop: "20px" }}>
