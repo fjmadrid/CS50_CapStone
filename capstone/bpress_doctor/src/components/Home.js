@@ -2,11 +2,12 @@ import React, { Component } from "react";
 import { Col, Container, Row } from "reactstrap";
 import MeasurementList from "./MeasurementList";
 import MessageList from "./MessageList";
+import "./Home.css";
 class Home extends Component {
   
   render() {
     return (
-      <Container style={{ marginTop: "20px" }}>
+      <Container className="home">
         <Row>
           <Col className="col-7">
             <Row>

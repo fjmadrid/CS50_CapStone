@@ -4,7 +4,7 @@ import axios from "axios";
 
 import { API_URL } from "../constants";
 import LoginForm from "./LoginForm";
-
+import "./LoginLogoutModal.css";
 
 class LoginLogoutModal extends Component {
 
@@ -32,15 +32,18 @@ class LoginLogoutModal extends Component {
 
   render() {
 
-    var button = <Button onClick={this.logout}>Logout</Button>;
+    var button = <Button 
+      className="button_logout"
+      onClick={this.logout}>
+        Logout
+      </Button>;
 
     if (this.props.state.doctor.username === "") {
       button = (
         <Button
           color="primary"
-          className="float-right"
-          onClick={this.toggle}
-          style={{ minWidth: "200px" }}
+          className="button_login"
+          onClick={this.toggle}          
         >
         Login
         </Button>
