@@ -57,12 +57,12 @@ class CreateSelectPatient extends Component {
                 </DropdownMenu>
             </Dropdown>
             <Modal isOpen={this.state.modal} toggle={this.toggleModal}>
-                <ModalHeader toggle={this.toggle}>Create new patient</ModalHeader>
+                <ModalHeader toggle={this.toggleModal}>Create new patient</ModalHeader>
                 <ModalBody>
                     <CreatePatientForm
                         state={this.props.state}
                         setState={(s)=>{this.props.setState(s)}}
-                        toggle={this.toggle}
+                        toggle={this.toggleModal}
                     />
                 </ModalBody>
             </Modal>

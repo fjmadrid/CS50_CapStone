@@ -31,6 +31,7 @@ class CreatePatientForm extends React.Component {
         var new_patients= this.props.state.patients;
         new_patients.push(new_patient);
         this.props.setState({patient:new_patient, patients:new_patients});
+        this.props.toggle();
     });
   }
   

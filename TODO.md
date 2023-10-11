@@ -1,7 +1,7 @@
 ## Working
 
 Implementing doctor_app:
-    - El modal que crea un paciente no se cierra de forma automática.
+    
 
 ## TODO list
 
