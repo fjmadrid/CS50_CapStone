@@ -64,14 +64,14 @@ class MessageList extends Component {
         <Row style={{backgroundColor:"lightgray"}}>
             <Container style={{overflowY:"scroll", height:"460px"}}>
               {!messages || messages.length <= 0 ? (
-                <div style={{textAlign: "center"}}>
+                <div style={{textAlign: "center", paddingTop:"25%"}}>
                     <b>Ops, no one here yet</b>
                 </div>
               ) : (
                 messages.toReversed().map(message => {
                   if (message.origin === this.props.doctor.id) {
                     return (
-                        <Card className="w-75" style={{float:"right", backgroundColor:"lightgreen", marginTop:"5px"}}>
+                        <Card key={message.id} className="w-75" style={{float:"right", backgroundColor:"lightgreen", marginTop:"5px"}}>
                           <CardText style={{fontSize:"75%", paddingLeft:"5px", paddingRight:"5px"}}>{message.text}</CardText>                            
                           <CardText style={{fontSize:"50%", textAlign:"right", marginTop:"-20px", paddingRight:"5px"}}>{message.date}</CardText>
                         </Card>
@@ -79,7 +79,7 @@ class MessageList extends Component {
                   }
                   else {
                     return (                     
-                          <Card className="w-75" style={{float:"left", backgroundColor:"grey", marginTop:"5px"}}>                            
+                          <Card key={message.id} className="w-75" style={{float:"left", backgroundColor:"grey", marginTop:"5px"}}>                            
                             <CardText style={{fontSize:"75%", paddingLeft:"5px", paddingRight:"5px"}}>{message.text}</CardText>                            
                             <CardText style={{fontSize:"50%", textAlign:"right", marginTop:"-20px", paddingRight:"5px"}} >{message.date}</CardText>                            
                           </Card>
