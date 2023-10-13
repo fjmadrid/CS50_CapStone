@@ -30,6 +30,7 @@ class NewMessageModal extends Component {
           <ModalHeader toggle={this.toggle}>New message</ModalHeader>
           <ModalBody>
             <NewMessageForm
+              patient={this.props.patient}
               resetState={this.props.resetState}
               toggle={this.toggle}              
             />

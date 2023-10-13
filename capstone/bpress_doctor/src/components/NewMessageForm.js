@@ -18,7 +18,7 @@ class NewMessageForm extends React.Component {
 
   createMessage = e => {
     e.preventDefault();
-    axios.post(API_URL+'patient/message/', this.state).then(() => {
+    axios.post(API_URL+`doctor/message/${this.props.patient.id}/`, this.state).then(() => {
       this.props.resetState();
       this.props.toggle();
     });

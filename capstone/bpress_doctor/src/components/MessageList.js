@@ -54,15 +54,15 @@ class MessageList extends Component {
   render() {
     const messages = this.state.messages;
     return (
-      <Container style={{ marginTop: "20px" }}>
+      <Container style={{ marginTop: "10px" }}>
         <Row>
           <Col><h1 style={{textAlign: "center"}}>Messages</h1></Col>
         </Row>
         <Row>
           <Col>Patient {this.props.patient.username}</Col><Col style={{textAlign:"right"}}>Me</Col>
         </Row>
-        <Row style={{height:"75%", backgroundColor:"darkblue"}}>            
-            <Container style={{overflowY:"scroll", maxHeight:"500px"}}>
+        <Row style={{backgroundColor:"darkblue"}}>            
+            <Container style={{overflowY:"scroll", maxHeight:"460px"}}>
               {!messages || messages.length <= 0 ? (
                 <div style={{textAlign: "center"}}>
                     <b>Ops, no one here yet</b>
@@ -93,7 +93,13 @@ class MessageList extends Component {
               )}
             </Container>
         </Row>
-        <Row>
+        <Row className="mt-3">
+          <Col className="col-auto">
+            <NewMessageModal
+              patient={this.props.patient} 
+              resetState={this.resetState} />
+          </Col>
+          <Col className="col-auto">
             <PaginationControl
               page={this.state.page}
               between={4}
@@ -102,10 +108,6 @@ class MessageList extends Component {
               changePage={(p)=>this.getMessages(p)}
               ellipsis={1}
             />
-        </Row>
-        <Row>
-          <Col>
-          <NewMessageModal resetState={this.resetState} />
           </Col>
         </Row>
       </Container>
