@@ -9,10 +9,11 @@ class Header extends Component {
     if (this.props.state.doctor.username==="")
     return (      
       <Container className="header">
-        <Row className="header_title">
+        <Row></Row>
+        <Row className="header_title mt-3">
             <h1>Blood Pressure Control Assistant</h1>
         </Row>
-        <Row>
+        <Row className="mt-3">
           <Col className="col-1">
             <LoginLogoutModal state={this.props.state}
               setState={(s)=>{this.props.setState(s)}} />
@@ -23,10 +24,11 @@ class Header extends Component {
     else
     return (
       <Container className="header">
-        <Row className="header_title">
+        <Row></Row>
+        <Row className="header_title mt-3">
             <h1>Blood Pressure Control Assistant</h1>
         </Row>
-        <Row>
+        <Row className="mt-3">
           <Col className="col-auto">
             <LoginLogoutModal state={this.props.state}
               setState={(s)=>{this.props.setState(s)}} />
