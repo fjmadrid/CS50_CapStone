@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Card, CardText, CardBody, CardFooter, Col, Container, Row } from "reactstrap";
+import { Card, CardText, Col, Container, Row } from "reactstrap";
 import {PaginationControl} from "react-bootstrap-pagination-control";
 import NewMessageModal from "./NewMessageModal";
 
@@ -61,8 +61,8 @@ class MessageList extends Component {
         <Row>
           <Col>Patient {this.props.patient.username}</Col><Col style={{textAlign:"right"}}>Me</Col>
         </Row>
-        <Row style={{backgroundColor:"darkblue"}}>            
-            <Container style={{overflowY:"scroll", maxHeight:"460px"}}>
+        <Row style={{backgroundColor:"lightgray"}}>
+            <Container style={{overflowY:"scroll", height:"460px"}}>
               {!messages || messages.length <= 0 ? (
                 <div style={{textAlign: "center"}}>
                     <b>Ops, no one here yet</b>
@@ -71,21 +71,17 @@ class MessageList extends Component {
                 messages.toReversed().map(message => {
                   if (message.origin === this.props.doctor.id) {
                     return (
-                        <Card className="w-75" style={{float:"right", backgroundColor:"lightgreen"}}>
-                          <CardBody>
-                            <CardText style={{fontSize:"75%"}}>{message.text}</CardText>                            
-                          </CardBody>
-                          <CardFooter style={{fontSize:"50%", textAlign:"left"}}>{message.date}</CardFooter>
+                        <Card className="w-75" style={{float:"right", backgroundColor:"lightgreen", marginTop:"5px"}}>
+                          <CardText style={{fontSize:"75%", paddingLeft:"5px", paddingRight:"5px"}}>{message.text}</CardText>                            
+                          <CardText style={{fontSize:"50%", textAlign:"right", marginTop:"-20px", paddingRight:"5px"}}>{message.date}</CardText>
                         </Card>
                     );
                   }
                   else {
                     return (                     
-                          <Card className="w-75" style={{float:"left", backgroundColor:"grey"}}>
-                            <CardBody>
-                              <CardText style={{fontSize:"75%"}}>{message.text}</CardText>                            
-                            </CardBody>
-                            <CardFooter style={{fontSize:"50%", textAlign:"left"}} >{message.date}</CardFooter>
+                          <Card className="w-75" style={{float:"left", backgroundColor:"grey", marginTop:"5px"}}>                            
+                            <CardText style={{fontSize:"75%", paddingLeft:"5px", paddingRight:"5px"}}>{message.text}</CardText>                            
+                            <CardText style={{fontSize:"50%", textAlign:"right", marginTop:"-20px", paddingRight:"5px"}} >{message.date}</CardText>                            
                           </Card>
                     );
                   }
