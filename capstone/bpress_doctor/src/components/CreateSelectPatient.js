@@ -38,12 +38,14 @@ class CreateSelectPatient extends Component {
     }
 
     render() {
+        const button_text = this.props.state.patient.username === "" ? 
+            "Create/Select patient" : this.props.state.patient.username;
       return (
         <div>
             <Dropdown className="mb-0" isOpen={this.state.dropdownOpen} toggle={this.toggleDropdown} direction="down">
-                <DropdownToggle color="primary" caret>Select patient</DropdownToggle>
+                <DropdownToggle color="primary" caret>{button_text}</DropdownToggle>
                 <DropdownMenu>
-                    <DropdownItem key="0" onClick={this.createPatient}>Add new patient</DropdownItem>
+                    <DropdownItem key="0" onClick={this.createPatient}>Create new patient</DropdownItem>
                     <DropdownItem divider />
                     {this.props.state.patients.map(patient => {
                         return (
