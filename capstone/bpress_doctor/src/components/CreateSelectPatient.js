@@ -38,10 +38,9 @@ class CreateSelectPatient extends Component {
     }
 
     render() {
-        //<div className="d-flex p-5">
       return (
         <div>
-            <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggleDropdown} direction="down">
+            <Dropdown className="mb-0" isOpen={this.state.dropdownOpen} toggle={this.toggleDropdown} direction="down">
                 <DropdownToggle color="primary" caret>Select patient</DropdownToggle>
                 <DropdownMenu>
                     <DropdownItem key="0" onClick={this.createPatient}>Add new patient</DropdownItem>

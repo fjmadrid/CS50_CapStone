@@ -51,11 +51,11 @@ class MeasurementList extends Component {
   render() {    
     const measurements = this.state.measurements;    
     return (
-      <Container style={{ marginTop: "20px" }}>
+      <Container style={{ marginTop: "10px" }}>
         <Row>
           <Col><h1 style={{textAlign: "center"}}>Measurements</h1></Col>
         </Row>
-        <Row>
+        <Row style={{height:"500px"}}>
           <Table>
             <thead>
               <tr>

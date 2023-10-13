@@ -14,7 +14,7 @@ class Home extends Component {
               <MeasurementList patient={this.props.patient}/>
             </Row>
           </Col>
-          <Col>
+          <Col className="col-5">
             <Row>
               <MessageList
                 patient={this.props.patient}
