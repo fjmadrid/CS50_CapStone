@@ -9,11 +9,14 @@ import { API_URL } from "../constants";
 
 class MeasurementList extends Component {
   
-  state = {
-    page: 1,
-    count: 0,    
-    measurements: []
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      page: 1,
+      count: 0,    
+      measurements: []
+    };
+  }
 
   componentDidMount() {
     this.getMeasurements(1);
@@ -45,17 +48,13 @@ class MeasurementList extends Component {
   render() {
     const measurements = this.state.measurements;
     return (
-      <Container style={{ marginTop: "20px" }}>
+      <Container style={{ marginTop: "10px" }}>
         <Row>
           <Col><h1 style={{textAlign: "center"}}>Measurements</h1></Col>
-        </Row>
-        <Row>
-          <Col>
-          <NewMeasurementModal create={true} resetState={this.resetState} />
-          </Col>
-        </Row>
-        <Row>
-          <Table>
+        </Row>        
+        <Row style={{height:"500px"}}>
+          <Container style={{overflowY:"scroll", maxHeight:"485px"}}>
+          <Table >
             <thead>
               <tr>
                 <th>Date</th>
@@ -88,9 +87,9 @@ class MeasurementList extends Component {
                         resetState={this.resetState}
                       />
                       &nbsp;&nbsp;
-                      <ConfirmRemovalModal
+                      <ConfirmRemovalModal                        
                         id={measurement.id}
-                        resetState={this.resetState}
+                        resetState={this.resetState}                        
                       />
                     </td>
                   </tr>
@@ -98,8 +97,13 @@ class MeasurementList extends Component {
               )}
             </tbody>
           </Table>
+          </Container>
         </Row>
-        <Row>      
+        <Row>        
+          <Col className="col-1">
+          <NewMeasurementModal create={true} resetState={this.resetState} />
+          </Col>
+          <Col>      
             <PaginationControl
               page={this.state.page}
               between={4}
@@ -108,6 +112,7 @@ class MeasurementList extends Component {
               changePage={(p)=>this.getMeasurements(p)}
               ellipsis={1}
             />
+          </Col>
         </Row>
       </Container>
     );
