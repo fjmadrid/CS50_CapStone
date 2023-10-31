@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Col, Container, Row, Table } from "reactstrap";
 import {PaginationControl} from "react-bootstrap-pagination-control";
-
+import Dayjs from "dayjs";
 import axios from "axios";
 import { API_URL } from "../constants";
 
@@ -76,7 +76,7 @@ class MeasurementList extends Component {
               ) : (
                 measurements.map(measurement => (
                   <tr key={measurement.id}>
-                    <td>{measurement.date}</td>
+                    <td>{Dayjs(measurement.date).format('MM/DD/YY H:mm')}</td>
                     <td>{measurement.systolic}</td>
                     <td>{measurement.diastolic}</td>
                     <td>{measurement.ppm}</td>

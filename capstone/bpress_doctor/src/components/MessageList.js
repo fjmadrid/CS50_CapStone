@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Button, Card, CardText, Col, Container, Row, Input, InputGroup } from "reactstrap";
-
+import Dayjs from "dayjs";
 
 
 import axios from "axios";
@@ -79,7 +79,7 @@ class MessageList extends Component {
                     return (
                         <Card key={message.id} className="w-75" style={{float:"right", backgroundColor:"lightgreen", marginTop:"5px"}}>
                           <CardText style={{fontSize:"75%", paddingLeft:"5px", paddingRight:"5px"}}>{message.text}</CardText>                            
-                          <CardText style={{fontSize:"50%", textAlign:"right", marginTop:"-20px", paddingRight:"5px"}}>{message.date}</CardText>
+                          <CardText style={{fontSize:"50%", textAlign:"right", marginTop:"-20px", paddingRight:"5px"}}>{Dayjs(message.date).format('DD/MM/YY H:mm')}</CardText>
                         </Card>
                     );
                   }
@@ -87,7 +87,7 @@ class MessageList extends Component {
                     return (                     
                           <Card key={message.id} className="w-75" style={{float:"left", backgroundColor:"lightgrey", marginTop:"5px"}}>                            
                             <CardText style={{fontSize:"75%", paddingLeft:"5px", paddingRight:"5px"}}>{message.text}</CardText>                            
-                            <CardText style={{fontSize:"50%", textAlign:"right", marginTop:"-20px", paddingRight:"5px"}} >{message.date}</CardText>                            
+                            <CardText style={{fontSize:"50%", textAlign:"right", marginTop:"-20px", paddingRight:"5px"}} >{Dayjs(message.date).format('DD/MM/YY H:mm')}</CardText>                            
                           </Card>
                     );
                   }

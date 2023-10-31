@@ -3,6 +3,8 @@ import { Col, Container, Row, Table } from "reactstrap";
 import {PaginationControl} from "react-bootstrap-pagination-control";
 import NewMeasurementModal from "./NewMeasurementModal";
 import ConfirmRemovalModal from "./ConfirmRemovalModal";
+import Dayjs from "dayjs";
+
 
 import axios from "axios";
 import { API_URL } from "../constants";
@@ -46,7 +48,7 @@ class MeasurementList extends Component {
   };
 
   render() {
-    const measurements = this.state.measurements;
+    const measurements = this.state.measurements;    
     return (
       <Container style={{ marginTop: "10px" }}>
         <Row>
@@ -75,7 +77,7 @@ class MeasurementList extends Component {
               ) : (
                 measurements.map(measurement => (
                   <tr key={measurement.id}>
-                    <td>{measurement.date}</td>
+                    <td>{Dayjs(measurement.date).format('MM/DD/YY H:mm')}</td>
                     <td>{measurement.systolic}</td>
                     <td>{measurement.diastolic}</td>
                     <td>{measurement.ppm}</td>
