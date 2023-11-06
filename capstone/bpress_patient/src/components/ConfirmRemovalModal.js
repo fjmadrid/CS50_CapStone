@@ -1,4 +1,6 @@
 import React, { Component, Fragment } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { Button, Modal, ModalHeader, ModalFooter} from "reactstrap";
 import axios from "axios";
 
@@ -25,8 +27,8 @@ class ConfirmRemovalModal extends Component {
   render() {
     return (
       <Fragment>
-        <Button color="danger" onClick={() => this.toggle()}>
-          Remove
+        <Button className="btn-sm" color="danger" onClick={() => this.toggle()}>
+        <FontAwesomeIcon icon={faXmark}/>
         </Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle}>

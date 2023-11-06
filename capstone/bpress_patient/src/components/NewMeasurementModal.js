@@ -1,4 +1,6 @@
 import React, { Component, Fragment } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPenToSquare, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
 import NewMeasurementForm from "./NewMeasurementForm";
 
@@ -19,18 +21,16 @@ class NewMeasurementModal extends Component {
     const create = this.props.create;
 
     var title = "Editing Measurement";
-    var button = <Button onClick={this.toggle}>Edit</Button>;
+    var button = <Button className="btn-sm" onClick={this.toggle}><FontAwesomeIcon icon={faPenToSquare} /></Button>;
     if (create) {
       title = "Creating New Measurement";
 
       button = (
         <Button
-          color="primary"
-          className="float-right"
-          onClick={this.toggle}
-          style={{ minWidth: "200px" }}
+          color="primary"          
+          onClick={this.toggle}          
         >
-          New
+          <FontAwesomeIcon icon={faPlus} />
         </Button>
       );
     }
