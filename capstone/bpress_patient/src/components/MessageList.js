@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPaperPlane, faArrowsRotate } from '@fortawesome/free-solid-svg-icons'
 import { Button, Card, CardText, Col, Container, Row, Input, InputGroup } from "reactstrap";
 import Dayjs from "dayjs";
 
@@ -96,21 +98,21 @@ class MessageList extends Component {
               )}
             </Container>
         </Row>
-        <Row className="mt-3">
-          <Col className="col-auto">
-            <Button color="primary" onClick={this.resetState}>Refresh</Button>
-          </Col>
-          <Col className="col-auto">
+        <Row className="mt-3">          
+          <Col className="col-10">
                 <InputGroup>
                   <Input 
-                    type="text" 
+                    type="text"
                     name="message_text" 
                     value={this.props.message_text} 
                     onChange={this.onChange} 
                     placeholder="Type a new message"
                   />
-                  <Button color="primary" onClick={this.sendMessage}>Send</Button>
+                  <Button color="primary" onClick={this.sendMessage}><FontAwesomeIcon icon={faPaperPlane}/></Button>
                 </InputGroup>
+          </Col>
+          <Col className="col-1">
+            <Button color="primary" onClick={this.resetState}><FontAwesomeIcon icon={faArrowsRotate}/></Button>
           </Col>
         </Row>
       </Container>
