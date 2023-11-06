@@ -108,11 +108,15 @@ class MessageList extends Component {
                     onChange={this.onChange} 
                     placeholder="Type a new message"
                   />
-                  <Button color="primary" onClick={this.sendMessage}><FontAwesomeIcon icon={faPaperPlane}/></Button>
+                  <Button color="primary" onClick={this.sendMessage}>
+                    <FontAwesomeIcon icon={faPaperPlane}/>
+                  </Button>
                 </InputGroup>
           </Col>
           <Col className="col-1">
-            <Button color="primary" onClick={this.resetState}><FontAwesomeIcon icon={faArrowsRotate}/></Button>
+            <Button color="primary" onClick={this.resetState}>
+              <FontAwesomeIcon icon={faArrowsRotate}/>
+            </Button>
           </Col>
         </Row>
       </Container>
