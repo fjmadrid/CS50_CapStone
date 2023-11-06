@@ -7,22 +7,16 @@ class Home extends Component {
 
   render() {
     return (
-      <Container className="home">
-        <Row>
-          <Col className="col-6">
-            <Row>
+      <Container className="home d-flex flex-md-row flex-sm-column">
+      <div>
               <MeasurementList/>
-            </Row>
-          </Col>
-          <Col className="col-6">
-            <Row>
+      </div>
+      <div>
               <MessageList
                 patient={this.props.patient}
                 doctor={this.props.doctor}
               />
-            </Row>
-          </Col> 
-        </Row>
+      </div>
       </Container>
     );
   }
