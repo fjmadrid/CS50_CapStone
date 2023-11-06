@@ -9,12 +9,12 @@ class Home extends Component {
     return (
       <Container className="home">
         <Row>
-          <Col className="col-7">
+          <Col className="col-6">
             <Row>
               <MeasurementList patient={this.props.patient}/>
             </Row>
           </Col>
-          <Col className="col-5">
+          <Col className="col-6">
             <Row>
               <MessageList
                 patient={this.props.patient}
