@@ -1,6 +1,8 @@
 ## Working
 
-
+  
 ## TODO list
-
-- ¿Por qué los campos date del formulario no se inicializan bien con la fecha cargada?
+- Añadir iconos aweson-font.
+- Revisar responsive.
+- Hacer el README.rst
+- Hacer el video.
