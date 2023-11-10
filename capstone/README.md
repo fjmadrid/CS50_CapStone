@@ -20,14 +20,14 @@ To provide “mobile-responsive”, the CSS framework “bootstrap5” has been 
 ## Folder contents
 The content of the folders is as follows:
 
-- “bpress_backend” folder: Contains the “backend” of the application. It is a Django application that uses the “Django Rest Framework” package to implement a Rest API that provides access to the data model by WEB applications. Its structure is the standard one of a Django project, highlighting:
-    - “models.py” file where the relational model corresponding to the data model shown in Figure 1 is implemented.
-    - “serializers.py” file where the JSON serializers used to transmit data between the backend and frontend are implemented.
-    - “views.py” file where the Rest API is implemented.
+- **`bpress_backend`** folder: Contains the “backend” of the application. It is a Django application that uses the “Django Rest Framework” package to implement a Rest API that provides access to the data model by WEB applications. Its structure is the standard one of a Django project, highlighting:
+    - `models.py` file where the relational model corresponding to the data model shown in Figure 1 is implemented.
+    - `serializers.py` file where the JSON serializers used to transmit data between the backend and frontend are implemented.
+    - `views.py`file where the Rest API is implemented.
 
-- “bpress_doctor” folder: contains a React.js application which is used by a doctor to monitor his patients. The folder structure is standard for a React.js application, highlighting the “src/components” folder that contains the implemented components such as “Header.js”, “Home.js”, “MessageList.js”, “MeasurementList ", "LoginForm.js", "CreateSelectPatient.js", among others.
+- **`bpress_doctor`** folder: contains a React.js application which is used by a doctor to monitor his patients. The folder structure is standard for a React.js application, highlighting the “src/components” folder that contains the implemented components such as “Header.js”, “Home.js”, “MessageList.js”, “MeasurementList ", "LoginForm.js", "CreateSelectPatient.js", among others.
 
-- “bpress_patient” folder: contains a React.js application which is used by a patient to store/review the blood pressure measurements taken and exchange messages with their supervising doctor to ask questions. The folder structure is standard for a React.js application, highlighting the “src/components” folder that contains the implemented components such as “Header.js”, “Home.js”, “MessageList.js”, “MeasurementList ", "LoginForm.js", "NewMeassurementForm.js", among others.
+- **`bpress_patient`** folder: contains a React.js application which is used by a patient to store/review the blood pressure measurements taken and exchange messages with their supervising doctor to ask questions. The folder structure is standard for a React.js application, highlighting the “src/components” folder that contains the implemented components such as “Header.js”, “Home.js”, “MessageList.js”, “MeasurementList ", "LoginForm.js", "NewMeassurementForm.js", among others.
 
 ## How to run
 
