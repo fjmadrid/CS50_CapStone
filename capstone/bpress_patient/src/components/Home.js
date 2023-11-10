@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Col, Container, Row } from "reactstrap";
+import {Container} from "reactstrap";
 import MeasurementList from "./MeasurementList";
 import MessageList from "./MessageList";
 import "./Home.css";
@@ -9,10 +9,10 @@ class Home extends Component {
     return (
       <Container className="home d-flex flex-md-row flex-sm-column">
       <div>
-              <MeasurementList/>
+              <MeasurementList />
       </div>
       <div>
-              <MessageList
+              <MessageList 
                 patient={this.props.patient}
                 doctor={this.props.doctor}
               />
