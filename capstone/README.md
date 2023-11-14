@@ -9,7 +9,7 @@ In my opinion, the application presented is different from the other projects ca
 - **Backend**: Implements a Rest API made with the “Django Rest Framework”, this framework has not been used in any of the other projects in the course. The data model used meets the complexity criteria. Four entities are modeled (PATIENT, DOCTOR, MEASUREMENT, MESSAGE) and several relationships, both “1:1”, “1:N” and “N:M”. See the data model shown in Figure 1.
 
 
-![Entity-Relationship Model](/assets/er-model.png)
+![Entity-Relationship Model](assets/er-model.png)
 **Figure 1**. Entity-Relationship Model.
 
 
