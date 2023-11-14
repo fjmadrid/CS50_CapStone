@@ -45,8 +45,8 @@ class NewMeasurementForm extends React.Component {
     });
   };
   
-  render() {
-    return (
+  render() {    
+    return (      
       <Form onSubmit={this.props.measurement ? this.editMeasurement : this.createMeasurement}>
         <FormGroup>
           <Label for="systolic">Systolic (upper):</Label>
@@ -81,7 +81,7 @@ class NewMeasurementForm extends React.Component {
             type="datetime-local"
             name="date"
             onChange={this.onChange}
-            value={this.state.date}
+            value={this.state.date.substring(0, 16)}
           />
         </FormGroup>
         <FormGroup>
