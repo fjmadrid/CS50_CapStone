@@ -77,7 +77,7 @@ class MeasurementList extends Component {
               ) : (
                 measurements.map(measurement => (
                   <tr key={measurement.id}>
-                    <td>{Dayjs(measurement.date).format('MM/DD/YY H:mm')}</td>
+                    <td>{Dayjs(measurement.date).format('DD/MM/YY H:mm')}</td>
                     <td>{measurement.systolic}</td>
                     <td>{measurement.diastolic}</td>
                     <td>{measurement.ppm}</td>
