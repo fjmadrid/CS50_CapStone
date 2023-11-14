@@ -62,16 +62,18 @@ class MessageList extends Component {
   render() {
     const messages = this.state.messages;
     return (
-      <Container style={{ marginTop: "10px" }}>
+      <Container style={{marginTop:"10px", backgroundColor:"lightblue" }}>
         <Row>
           <Col><h1 style={{textAlign: "center"}}>Messages</h1></Col>
         </Row>
-        <Row style={{backgroundColor:"grey"}}>
+        <Row style={{height:"538px"}}>
+          <Container>
+        <Row style={{backgroundColor:"gray"}}>
           <Col>{this.props.doctor.username}</Col>
           <Col style={{textAlign:"right"}}>Me</Col>
         </Row>
         <Row style={{backgroundColor:"gray"}}>
-            <Container style={{overflowY:"scroll", maxHeight:"460px"}}>
+            <Container style={{overflowY:"scroll", maxHeight:"497px"}}>
               {!messages || messages.length <= 0 ? (
                 <div style={{textAlign: "center", paddingTop:"25%"}}>
                   <b>Ops, no one here yet</b>
@@ -98,7 +100,9 @@ class MessageList extends Component {
               )}
             </Container>
         </Row>
-        <Row className="mt-3">          
+        </Container>
+        </Row>
+        <Row className="pb-3">          
           <Col className="col-10">
                 <InputGroup>
                   <Input 

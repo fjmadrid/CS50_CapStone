@@ -2,20 +2,21 @@ import React, { Component } from "react";
 import {Container} from "reactstrap";
 import MeasurementList from "./MeasurementList";
 import MessageList from "./MessageList";
-import "./Home.css";
+
 class Home extends Component {
 
   render() {
     return (
-      <Container className="home d-flex flex-md-row flex-sm-column">
+      <Container className="d-flex flex-md-row flex-sm-column" 
+        style={{gap:"10px", height:"614px"}}>
       <div>
-              <MeasurementList />
+        <MeasurementList />
       </div>
       <div>
-              <MessageList 
-                patient={this.props.patient}
-                doctor={this.props.doctor}
-              />
+        <MessageList 
+          patient={this.props.patient}
+          doctor={this.props.doctor}
+        />
       </div>
       </Container>
     );

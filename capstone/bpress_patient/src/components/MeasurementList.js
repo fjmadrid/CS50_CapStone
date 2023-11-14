@@ -50,13 +50,13 @@ class MeasurementList extends Component {
   render() {
     const measurements = this.state.measurements;    
     return (
-      <Container style={{ marginTop: "10px" }}>
+      <Container style={{marginTop:"10px", backgroundColor:"lightblue"}}>
         <Row>
           <Col><h1 style={{textAlign: "center"}}>Measurements</h1></Col>
         </Row>        
-        <Row style={{height:"500px"}}>
-          <Container style={{overflowY:"scroll", maxHeight:"485px"}}>
-          <Table style={{whiteSpace:"nowrap"}}>
+        <Row style={{height:"538px"}}>
+          <Table striped responsive className="table-primary" style={{overflowY:"scroll", maxHeight:"485px",
+            whiteSpace:"nowrap"}}>
             <thead>
               <tr>
                 <th>Date</th>
@@ -98,8 +98,7 @@ class MeasurementList extends Component {
                 ))
               )}
             </tbody>
-          </Table>
-          </Container>
+          </Table>          
         </Row>
         <Row>        
           <Col className="col-1">
