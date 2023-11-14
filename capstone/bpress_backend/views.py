@@ -208,8 +208,7 @@ class DoctorPatientMeasurementList(APIView, PageNumberPagination):
         supv = get_supervision(patient)
         if supv.doctor != request.user:
             return Response(status=status.HTTP_400_BAD_REQUEST)
-        
-        queryset = Measurement.objects.filter(user=patient)
+        queryset = Measurement.objects.filter(user=patient).order_by('-date')        
         results = self.paginate_queryset(queryset, request, view=self)
         serializer = MeasurementSerializer(results, many=True)
         return self.get_paginated_response(serializer.data)
