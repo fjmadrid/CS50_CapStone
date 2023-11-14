@@ -2,16 +2,18 @@ import React, { Component } from "react";
 import { Container, Row, Col} from "reactstrap";
 import LoginLogoutModal from "./LoginLogoutModal"
 import CreateSelectPatient from "./CreateSelectPatient";
-import  "./Header.css";
 class Header extends Component {
 
   render() {    
     if (this.props.state.doctor.username==="")
     return (      
-      <Container className="header">
+      <Container style={{backgroundColor:"darkblue", height:"154px"}}>
         <Row></Row>
-        <Row className="header_title mt-3">
-            <h1>Blood Pressure Control Assistant</h1>
+        <Row className="mt-3">
+            <h1 style={{textAlign:"center", color:"brown", 
+              fontWeight:"bolder"}}>
+              Blood Pressure Control Assistant
+            </h1>
         </Row>
         <Row className="mt-3">
           <Col className="col-1">
@@ -23,10 +25,13 @@ class Header extends Component {
     );
     else
     return (
-      <Container className="header">
+      <Container style={{backgroundColor:"darkblue", height:"154px"}}>
         <Row></Row>
-        <Row className="header_title mt-3">
-            <h1>Blood Pressure Control Assistant</h1>
+        <Row className="mt-3">
+            <h1 style={{textAlign:"center", color:"brown", 
+              fontWeight:"bolder"}}
+              >Blood Pressure Control Assistant
+            </h1>
         </Row>
         <Row className="mt-3">
           <Col className="col-auto">
