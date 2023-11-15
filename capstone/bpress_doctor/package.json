@@ -1,5 +1,6 @@
 {
   "name": "bpress_doctor",
+  "homepage": "http://localhost",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
