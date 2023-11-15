@@ -33,18 +33,26 @@ The content of the folders is as follows:
 
 ### Backend execution
 
-In the folder "capstone" execute:
+In the folder `capstone` execute:
 
 `python manage.py runserver`
 
 ### Running the “bpress_patient” application
 
+Install nodejs package "serve" (if it is necessary)
+
+`npm install --global serve``
+
 In the folder `capstone/bpress_patient` execute:
 
-`npm start`
+`serve -s build`
+
+Open in the browser the url `http://localhost:3000`
 
 ### Running the “bpress_doctor” application
 
 In the folder `capstone/bpress_doctor` execute:
 
-`npm start`
+`serve -s build`
+
+Open in the browser the url `http://localhost:3000`
