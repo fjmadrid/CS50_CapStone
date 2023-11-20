@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane, faArrowsRotate } from '@fortawesome/free-solid-svg-icons';
-import { Button, Card, CardText, Col, Container, Row, Input, InputGroup } from "reactstrap";
+import { Button, Card, CardText, Col, Container, Row, Input, InputGroup, ListGroup, ListGroupItem } from "reactstrap";
 import Dayjs from "dayjs";
 
 
@@ -72,32 +72,38 @@ class MessageList extends Component {
           <Col style={{textAlign:"right"}}>Me</Col>
         </Row>
         <Row style={{backgroundColor:"gray"}}>
-            <Container style={{overflowY:"scroll", height:"497px"}}>
+            <ListGroup className="p-1" style={{overflowY:"scroll", height:"497px"}}>
               {!messages || messages.length <= 0 ? (
-                <div style={{textAlign: "center", paddingTop:"25%"}}>
+                <ListGroupItem>
+                  <div style={{textAlign: "center", paddingTop:"25%"}}>
                     <b>Ops, no one here yet</b>
-                </div>
+                  </div>
+                </ListGroupItem>
               ) : (
                 messages.map(message => {
                   if (message.origin === this.props.doctor.id) {
                     return (
-                        <Card key={message.id} className="w-75" style={{float:"right", backgroundColor:"lightgreen", marginTop:"5px"}}>
+                      <ListGroupItem key={message.id}>
+                        <Card className="w-75" style={{float:"right", backgroundColor:"lightgreen", marginTop:"5px"}}>
                           <CardText style={{fontSize:"75%", paddingLeft:"5px", paddingRight:"5px"}}>{message.text}</CardText>                            
                           <CardText style={{fontSize:"50%", textAlign:"right", marginTop:"-20px", paddingRight:"5px"}}>{Dayjs(message.date).format('DD/MM/YY H:mm')}</CardText>
                         </Card>
+                      </ListGroupItem>
                     );
                   }
                   else {
-                    return (                     
-                          <Card key={message.id} className="w-75" style={{float:"left", backgroundColor:"lightgrey", marginTop:"5px"}}>                            
+                    return (
+                      <ListGroupItem key={message.id}>
+                          <Card className="w-75" style={{float:"left", backgroundColor:"lightgrey", marginTop:"5px"}}>                            
                             <CardText style={{fontSize:"75%", paddingLeft:"5px", paddingRight:"5px"}}>{message.text}</CardText>                            
                             <CardText style={{fontSize:"50%", textAlign:"right", marginTop:"-20px", paddingRight:"5px"}} >{Dayjs(message.date).format('DD/MM/YY H:mm')}</CardText>                            
                           </Card>
+                      </ListGroupItem>
                     );
                   }
                 })
               )}
-            </Container>
+            </ListGroup>
         </Row>
         </Container>
         </Row>
