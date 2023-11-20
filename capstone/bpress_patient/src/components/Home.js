@@ -9,7 +9,7 @@ class Home extends Component {
     return (
       <Container className="d-flex flex-md-row flex-sm-column" 
         style={{gap:"10px", height:"614px"}}>
-      <div>
+      <div className="w-100">
         <MeasurementList />
       </div>
       <div>
