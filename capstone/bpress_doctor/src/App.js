@@ -1,54 +1,48 @@
-import React, { Component, Fragment } from "react";
+import React, { useState } from "react";
 import { Container, Row } from "reactstrap";
 
 import Header from "./components/Header";
 import Home from "./components/Home";
-import axios from "axios";
 
-class App extends Component {
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      patients : [],
-      patient: {id:0, username:""},
-      doctor: {id:0, username:""}
-    };
-    axios.defaults.headers.common['Authorization'] = "";
-  }
+function App(props) {
+  var [state, setState] = useState({
+    patients: [],
+    patient: { id: 0, username: "" },
+    doctor: { id: 0, username: "" },
+  });
 
-  render() {
-    if (this.state.doctor.username === "") {
+  if (state.doctor.username === "") {
+    return (
+      <>
+        <Header state={state} setState={setState} />
+        <Container className="text-center">
+          <Row>
+            <h1>Opps! you must login!!</h1>
+          </Row>
+        </Container>
+      </>
+    );
+  } else {
+    if (state.patient.username === "") {
       return (
-        <Fragment>          
-          <Header state={this.state} setState={(s)=>{this.setState(s)}} />          
+        <>
+          <Header state={state} setState={setState} />
           <Container className="text-center">
             <Row>
-              <h1>Opps! you must login!!</h1>
+              <h1>Opps! you must select a patient!!</h1>
             </Row>
-          </Container>            
-        </Fragment>
+          </Container>
+        </>
       );
     } else {
-      if (this.state.patient.username === "") {
-        return (
-          <Fragment>          
-            <Header state={this.state} setState={(s)=>{this.setState(s)}} />          
-            <Container className="text-center">
-              <Row><h1>Opps! you must select a patient!!</h1></Row>
-            </Container>            
-          </Fragment>
-      )} else  {
-        return (
-          <Fragment>
-          <Header state={this.state} setState={(s)=>{this.setState(s)}} />      
-          <Home  
-             patient={this.state.patient} 
-             doctor={this.state.doctor} 
-          />
-          </Fragment>
-      )};
-    }          
+      return (
+        <>
+          <Header state={state} setState={setState} />
+          <Home patient={state.patient} doctor={state.doctor} />
+        </>
+      );
+    }
   }
 }
 
