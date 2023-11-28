@@ -1,57 +1,47 @@
-import React, { Component, Fragment } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPenToSquare, faPlus } from '@fortawesome/free-solid-svg-icons'
+import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPenToSquare, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
 import NewMeasurementForm from "./NewMeasurementForm";
 
-class NewMeasurementModal extends Component {
-  
-  constructor(props) {
-    super(props)
-    this.state = {modal: false};    
-  }
+function NewMeasurementModal(props) {
+  var [state, setState] = useState({ modal: false });
 
-  toggle = () => {
-    this.setState(previous => ({
-      modal: !previous.modal
-    }));
+  const toggle = () => {
+    setState({ modal: !state.modal });
   };
 
-  render() {
-    const create = this.props.create;
+  var title = "Editing Measurement";
+  var button = (
+    <Button className="btn-sm" onClick={toggle}>
+      <FontAwesomeIcon icon={faPenToSquare} />
+    </Button>
+  );
 
-    var title = "Editing Measurement";
-    var button = <Button className="btn-sm" onClick={this.toggle}><FontAwesomeIcon icon={faPenToSquare} /></Button>;
-    if (create) {
-      title = "Creating New Measurement";
-
-      button = (
-        <Button
-          color="primary"          
-          onClick={this.toggle}          
-        >
-          <FontAwesomeIcon icon={faPlus} />
-        </Button>
-      );
-    }
-
-    return (
-      <Fragment>
-        {button}
-        <Modal isOpen={this.state.modal} toggle={this.toggle}>
-          <ModalHeader toggle={this.toggle}>{title}</ModalHeader>
-
-          <ModalBody>
-            <NewMeasurementForm
-              resetState={this.props.resetState}
-              toggle={this.toggle}
-              measurement={this.props.measurement}
-            />
-          </ModalBody>
-        </Modal>
-      </Fragment>
+  if (props.create) {
+    title = "Creating New Measurement";
+    button = (
+      <Button color="primary" onClick={toggle}>
+        <FontAwesomeIcon icon={faPlus} />
+      </Button>
     );
   }
+
+  return (
+    <>
+      {button}
+      <Modal isOpen={state.modal} toggle={toggle}>
+        <ModalHeader toggle={toggle}>{title}</ModalHeader>
+        <ModalBody>
+          <NewMeasurementForm
+            resetState={props.resetState}
+            toggle={toggle}
+            measurement={props.measurement}
+          />
+        </ModalBody>
+      </Modal>
+    </>
+  );
 }
 
 export default NewMeasurementModal;
