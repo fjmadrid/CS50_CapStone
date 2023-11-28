@@ -1,76 +1,88 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { Modal, ModalHeader, ModalBody } from "reactstrap";
 
 import {
-    Dropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
-} from 'reactstrap';
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from "reactstrap";
 
 import CreatePatientForm from "./CreatePatientForm";
-class CreateSelectPatient extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            dropdownOpen: false,
-            modal: false,
-        };
-    }
+function CreateSelectPatient(props) {
+  var [state, setState] = useState({
+    dropdownOpen: false,
+    modal: false,
+  });
 
-    toggleDropdown = () => {
-        this.setState(previous => ({
-            dropdownOpen: !previous.dropdownOpen
-          }));
-    };
+  const toggleDropdown = () => {
+    setState({
+      ...state,
+      dropdownOpen: !state.dropdownOpen,
+    });
+  };
 
-    toggleModal = () => {
-        this.setState(previous => ({
-            modal: !previous.modal
-        }))
-    }
-    
-    createPatient = () => {this.toggleModal(this.status)};
-    
-    selectPatient = (patient) => {
-        this.props.setState({patient:patient});        
-    }
+  const toggleModal = () => {
+    setState({
+      ...state,
+      modal: !state.modal,
+    });
+  };
 
-    render() {
-        const button_text = this.props.state.patient.username === "" ? 
-            "Create/Select patient" : this.props.state.patient.username;
-      return (
-        <div>
-            <Dropdown className="mb-0" isOpen={this.state.dropdownOpen} toggle={this.toggleDropdown} direction="down">
-                <DropdownToggle color="primary" caret>{button_text}</DropdownToggle>
-                <DropdownMenu>
-                    <DropdownItem key="0" onClick={this.createPatient}>Create new patient</DropdownItem>
-                    <DropdownItem divider />
-                    {this.props.state.patients.map(patient => {
-                        return (
-                            <DropdownItem key={patient.id} 
-                                onClick={() => this.selectPatient(patient)}
-                                disabled={this.props.state.patient.id===patient.id}>
-                                    {patient.username}
-                            </DropdownItem>
-                        );
-                    })}
-                </DropdownMenu>
-            </Dropdown>
-            <Modal isOpen={this.state.modal} toggle={this.toggleModal}>
-                <ModalHeader toggle={this.toggleModal}>Create new patient</ModalHeader>
-                <ModalBody>
-                    <CreatePatientForm
-                        state={this.props.state}
-                        setState={(s)=>{this.props.setState(s)}}
-                        toggle={this.toggleModal}
-                    />
-                </ModalBody>
-            </Modal>
-        </div>
-      );
-    }
-}   
+  const createPatient = () => {
+    toggleModal(this.status);
+  };
+
+  const selectPatient = (patient) => {
+    props.setState({ ...props.state, patient: patient });
+  };
+
+  const button_text =
+    props.state.patient.username === ""
+      ? "Create/Select patient"
+      : props.state.patient.username;
+  return (
+    <>
+      <Dropdown
+        className="mb-0"
+        isOpen={state.dropdownOpen}
+        toggle={toggleDropdown}
+        direction="down"
+      >
+        <DropdownToggle color="primary" caret>
+          {button_text}
+        </DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem key="0" onClick={createPatient}>
+            Create new patient
+          </DropdownItem>
+          <DropdownItem divider />
+          {props.state.patients.map((patient) => {
+            return (
+              <DropdownItem
+                key={patient.id}
+                onClick={() => selectPatient(patient)}
+                disabled={props.state.patient.id === patient.id}
+              >
+                {patient.username}
+              </DropdownItem>
+            );
+          })}
+        </DropdownMenu>
+      </Dropdown>
+      <Modal isOpen={state.modal} toggle={toggleModal}>
+        <ModalHeader toggle={toggleModal}>Create new patient</ModalHeader>
+        <ModalBody>
+          <CreatePatientForm
+            state={props.state}
+            setState={props.setState}
+            toggle={toggleModal}
+          />
+        </ModalBody>
+      </Modal>
+    </>
+  );
+}
 
 export default CreateSelectPatient;
