@@ -13,10 +13,6 @@ function MeasurementList(props) {
   
   var [state, setState] = useState({page:1, count:0, measurements:[]});
 
-  useEffect(() => {
-    this.getMeasurements(1);
-  }, []);
-
   const getMeasurements = (page=1) => {
     axios.get(API_URL + `patient/measurement/?page=${page}`).then(
       res => {
@@ -31,6 +27,10 @@ function MeasurementList(props) {
   const resetState = () => {
     getMeasurements(state.page);
   };
+
+  useEffect(() => {
+    getMeasurements(1);
+  }, []);
       
   return (
     <Container style={{marginTop:"10px", backgroundColor:"lightblue"}}>
