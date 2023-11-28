@@ -6,16 +6,15 @@ import axios from "axios";
 import { API_URL } from "../constants";
 
 function LoginForm(props) {
-  const [state, setState] = useState({
-    username: "",
-    password: "",
-  });
+
+  var [state, setState] = useState({username: "", password: ""});
 
   const onChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
   };
 
   const login = async (e) => {
+    e.preventDefault();
     const resp1 = await axios.post(API_URL + "authentication/login/", state);
     if (resp1.status === 200) {
       const key = resp1.data["key"];
