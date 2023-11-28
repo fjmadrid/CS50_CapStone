@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { useState } from "react";
 import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
 import axios from "axios";
 
@@ -6,67 +6,53 @@ import { API_URL } from "../constants";
 import LoginForm from "./LoginForm";
 import "./LoginLogoutModal.css";
 
-class LoginLogoutModal extends Component {
+function LoginLogoutModal(props) {
+  var [state, setState] = useState({ modal: false });
 
-  constructor(props) {
-    super(props);
-    this.state = {modal: false};
-  }
-
-  toggle = () => {
-    this.setState(previous => ({
-      modal: !previous.modal
-    }));
+  const toggle = () => {
+    setState({ modal: !state.modal });
   };
 
-  logout = e => {    
-    e.preventDefault();
-    axios.post(API_URL+'authentication/logout/').then((response) => {
-        axios.defaults.headers.common['Authorization'] = '';
-        this.props.setState ({
-          patient:{id:0, username:""},
-          doctor:{id:0, username:""}
+  const logout = (e) => {
+    axios.post(API_URL + "authentication/logout/").then((response) => {
+      axios.defaults.headers.common["Authorization"] = "";
+      props.setState({
+        patients: [],
+        patient: { id: 0, username: "" },
+        doctor: { id: 0, username: "" },
       });
     });
-  }
+  };
 
-  render() {
+  var button = (
+    <Button className="button_logout" onClick={logout}>
+      Logout
+    </Button>
+  );
 
-    var button = <Button 
-      className="button_logout"
-      onClick={this.logout}>
-        Logout
-      </Button>;
-
-    if (this.props.state.doctor.username === "") {
-      button = (
-        <Button
-          color="primary"
-          className="button_login"
-          onClick={this.toggle}          
-        >
+  if (props.state.doctor.username === "") {
+    button = (
+      <Button color="primary" className="button_login" onClick={toggle}>
         Login
-        </Button>
-      );
-    }
-
-    
-    return (
-      <Fragment>
-        {button}
-        <Modal isOpen={this.state.modal} toggle={this.toggle}>
-          <ModalHeader toggle={this.toggle}>Login</ModalHeader>
-          <ModalBody>
-            <LoginForm
-              state={this.props.state}
-              setState={(s)=>{this.props.setState(s)}}
-              toggle={this.toggle}
-            />
-          </ModalBody>
-        </Modal>
-      </Fragment>
+      </Button>
     );
   }
+
+  return (
+    <>
+      {button}
+      <Modal isOpen={state.modal} toggle={toggle}>
+        <ModalHeader toggle={toggle}>Login</ModalHeader>
+        <ModalBody>
+          <LoginForm
+            state={props.state}
+            setState={props.setState}
+            toggle={toggle}
+          />
+        </ModalBody>
+      </Modal>
+    </>
+  );
 }
 
 export default LoginLogoutModal;
