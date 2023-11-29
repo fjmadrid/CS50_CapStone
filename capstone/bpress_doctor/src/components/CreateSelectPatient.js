@@ -11,27 +11,15 @@ import {
 import CreatePatientForm from "./CreatePatientForm";
 
 function CreateSelectPatient(props) {
-  var [state, setState] = useState({
-    dropdownOpen: false,
-    modal: false,
-  });
+  var [dropdownOpen, setDropDownOpen] = useState(false);
+  var [modal, setModal] = useState(false);
 
   const toggleDropdown = () => {
-    setState({
-      ...state,
-      dropdownOpen: !state.dropdownOpen,
-    });
+    setDropDownOpen((d) => !d);
   };
 
   const toggleModal = () => {
-    setState({
-      ...state,
-      modal: !state.modal,
-    });
-  };
-
-  const createPatient = () => {
-    toggleModal(this.status);
+    setModal((m) => !m);
   };
 
   const selectPatient = (patient) => {
@@ -42,11 +30,12 @@ function CreateSelectPatient(props) {
     props.state.patient.username === ""
       ? "Create/Select patient"
       : props.state.patient.username;
+
   return (
     <>
       <Dropdown
         className="mb-0"
-        isOpen={state.dropdownOpen}
+        isOpen={dropdownOpen}
         toggle={toggleDropdown}
         direction="down"
       >
@@ -54,7 +43,7 @@ function CreateSelectPatient(props) {
           {button_text}
         </DropdownToggle>
         <DropdownMenu>
-          <DropdownItem key="0" onClick={createPatient}>
+          <DropdownItem key="0" onClick={toggleModal}>
             Create new patient
           </DropdownItem>
           <DropdownItem divider />
@@ -71,7 +60,7 @@ function CreateSelectPatient(props) {
           })}
         </DropdownMenu>
       </Dropdown>
-      <Modal isOpen={state.modal} toggle={toggleModal}>
+      <Modal isOpen={modal} toggle={toggleModal}>
         <ModalHeader toggle={toggleModal}>Create new patient</ModalHeader>
         <ModalBody>
           <CreatePatientForm
