@@ -7,7 +7,7 @@ import { API_URL } from "../constants";
 
 function LoginForm(props) {
 
-  var [state, setState] = useState({username: "", password: ""});
+  let [state, setState] = useState({username: "", password: ""});
 
   const onChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
@@ -21,7 +21,7 @@ function LoginForm(props) {
       axios.defaults.headers.common["Authorization"] = `Token ${key}`;
       const resp2 = await axios.get(API_URL + "doctor/", state);
       if (resp2.status === 200) {
-        var doctor = resp2.data["user"];
+        let doctor = resp2.data["user"];
         const resp3 = await axios.get(API_URL + "doctor/patient");
         if (resp3.status === 200) {
           props.setState({

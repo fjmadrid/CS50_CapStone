@@ -11,8 +11,8 @@ import {
 import CreatePatientForm from "./CreatePatientForm";
 
 function CreateSelectPatient(props) {
-  var [dropdownOpen, setDropDownOpen] = useState(false);
-  var [modal, setModal] = useState(false);
+  let [dropdownOpen, setDropDownOpen] = useState(false);
+  let [modal, setModal] = useState(false);
 
   const toggleDropdown = () => {
     setDropDownOpen((d) => !d);

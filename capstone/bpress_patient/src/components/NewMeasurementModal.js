@@ -5,14 +5,14 @@ import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
 import NewMeasurementForm from "./NewMeasurementForm";
 
 function NewMeasurementModal(props) {
-  var [state, setState] = useState({ modal: false });
+  const [state, setState] = useState({ modal: false });
 
   const toggle = () => {
     setState({ modal: !state.modal });
   };
 
-  var title = "Editing Measurement";
-  var button = (
+  let title = "Editing Measurement";
+  let button = (
     <Button className="btn-sm" onClick={toggle}>
       <FontAwesomeIcon icon={faPenToSquare} />
     </Button>

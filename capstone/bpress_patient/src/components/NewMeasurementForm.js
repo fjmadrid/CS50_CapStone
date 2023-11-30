@@ -6,8 +6,8 @@ import axios from "axios";
 import { API_URL } from "../constants";
 
 function NewMeasurementForm(props) {
-  var now = new Date();
-  var [state, setState] = useState(props.measurement ? props.measurement : {
+  const now = new Date();
+  const [state, setState] = useState(props.measurement ? props.measurement : {
     id: 0,
     diastolic: 0,
     systolic: 0,

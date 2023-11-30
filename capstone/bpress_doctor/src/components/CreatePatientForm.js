@@ -6,7 +6,7 @@ import axios from "axios";
 import { API_URL } from "../constants";
 
 function CreatePatientForm(props) {
-  var [state, setState] = useState({
+  let [state, setState] = useState({
     username: "",
     password: "",
     birthdate: "",
@@ -22,7 +22,7 @@ function CreatePatientForm(props) {
     e.preventDefault();
     axios.post(API_URL + "doctor/patient/", state).then((resp) => {
       const new_patient = resp.data;
-      var new_patients = props.state.patients;
+      let new_patients = props.state.patients;
       new_patients.push(new_patient);
       props.setState({
         ...props.state,

@@ -7,7 +7,7 @@ import { API_URL } from "../constants";
 
 function LoginForm(props) {
 
-  var [state, setState] = useState({username: "", password: ""});
+  let [state, setState] = useState({username: "", password: ""});
 
   const onChange = e => {
     setState({...state, [e.target.name]: e.target.value });
@@ -16,8 +16,8 @@ function LoginForm(props) {
   const login = async (e) => {    
     e.preventDefault();
     
-    var patient = { id:0, username:""};
-    var doctor = {id:0, username:""};
+    let patient = { id:0, username:""};
+    let doctor = {id:0, username:""};
     
     const resp1 = await axios.post(API_URL+'authentication/login/', state);
 

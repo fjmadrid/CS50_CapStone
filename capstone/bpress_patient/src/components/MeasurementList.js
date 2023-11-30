@@ -11,7 +11,7 @@ import { API_URL } from "../constants";
 
 function MeasurementList(props) {
   
-  var [state, setState] = useState({page:1, count:0, measurements:[]});
+  const [state, setState] = useState({page:1, count:0, measurements:[]});
 
   const getMeasurements = (page=1) => {
     axios.get(API_URL + `patient/measurement/?page=${page}`).then(

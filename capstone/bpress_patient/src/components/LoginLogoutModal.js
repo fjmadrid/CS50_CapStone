@@ -8,7 +8,7 @@ import LoginForm from "./LoginForm";
 
 function LoginLogoutModal (props) {
 
-  var [modal, setModal] = useState(false);
+  const [modal, setModal] = useState(false);
 
   const toggle = () => {
     setModal(!modal);
@@ -23,7 +23,7 @@ function LoginLogoutModal (props) {
       });
   }
 
-  var button = <Button onClick={logout}>Logout</Button>;
+  let button = <Button onClick={logout}>Logout</Button>;
 
   if (props.state.patient.username === "") {
     button = (

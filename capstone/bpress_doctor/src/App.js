@@ -6,7 +6,7 @@ import Home from "./components/Home";
 
 
 function App(props) {
-  var [state, setState] = useState({
+  let [state, setState] = useState({
     patients: [],
     patient: { id: 0, username: "" },
     doctor: { id: 0, username: "" },

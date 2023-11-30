@@ -7,7 +7,7 @@ import { API_URL } from "../constants";
 
 function MeasurementList(props) {
 
-  var [state, setState] = useState({
+  let [state, setState] = useState({
     page: 1,
     count: 0,
     measurements: [],

@@ -22,8 +22,8 @@ import axios from "axios";
 import { API_URL } from "../constants";
 
 function MessageList(props) {
-  var [messages, setMessages] = useState([]);
-  var [message, setMessage] = useState("");
+  const [messages, setMessages] = useState([]);
+  const [message, setMessage] = useState("");
 
   const getMessages = () => {
     axios.get(API_URL + `patient/message/`).then((res) => {
